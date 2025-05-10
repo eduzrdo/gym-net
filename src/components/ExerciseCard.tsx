@@ -1,0 +1,69 @@
+"use client";
+import { useState } from "react";
+
+type ExerciseCardProps = {
+  title: string;
+  sets: number;
+  reps: number[][];
+  weight?: number[];
+};
+
+export function ExerciseCard({ title, sets, reps, weight }: ExerciseCardProps) {
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    if (count === sets) {
+      setCount(0);
+      return;
+    }
+
+    setCount((count) => count + 1);
+  };
+
+  return (
+    <div
+      className="flex flex-col gap-4 p-4 rounded-xl bg-white"
+      onClick={handleClick}
+    >
+      <div className="flex gap-4">
+        <h3 className="flex-1">{title}</h3>
+
+        <div className="flex gap-1 h-5 items-stretch">
+          {Array(sets)
+            .fill(1)
+            .map((set, index) => (
+              <div
+                key={index}
+                className={`w-1 rounded-full ${
+                  index < count ? "bg-green-600" : "bg-zinc-300"
+                }`}
+              ></div>
+            ))}
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-2.5">
+        <div>
+          <span className="font-medium text-sm text-zinc-400 mr-4">Séries</span>{" "}
+          <span className="font-bold text-sm">{sets}</span>
+        </div>
+        <div>
+          <span className="font-medium text-sm text-zinc-400 mr-4">
+            Repetições
+          </span>{" "}
+          <span className="font-bold text-sm">
+            {reps.map((r) => r.join(" ~ ")).join(" • ")}
+          </span>
+        </div>
+        {weight && (
+          <div>
+            <span className="font-medium text-sm text-zinc-400 mr-4">
+              Carga
+            </span>{" "}
+            <span className="font-bold text-sm">{weight}</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
