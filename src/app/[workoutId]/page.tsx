@@ -4,7 +4,6 @@ import { useParams } from "next/navigation";
 
 import { ExerciseCard, Header } from "@/src/components";
 import { workoutPlan } from "@/src/data/workoutPlan";
-import router from "next/router";
 
 export default function Home() {
   const router = useParams<{ workoutId: string }>();
