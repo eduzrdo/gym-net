@@ -1,15 +1,14 @@
 "use client";
 import { useState } from "react";
+import { clsx } from "clsx";
 
-type ExerciseCardProps = {
-  title: string;
-  sets: number;
-  reps: number[][];
-  weight?: number[];
-};
+import { Exercise } from "@/src/data/workoutPlan";
+
+type ExerciseCardProps = Exercise;
 
 export function ExerciseCard({ title, sets, reps, weight }: ExerciseCardProps) {
   const [count, setCount] = useState(0);
+  const [keyboardIsFocused, setKeyboardIsFocused] = useState(false);
 
   const handleClick = () => {
     if (count === sets) {
@@ -22,7 +21,12 @@ export function ExerciseCard({ title, sets, reps, weight }: ExerciseCardProps) {
 
   return (
     <div
-      className="flex flex-col gap-4 p-4 rounded-xl bg-white"
+      className={clsx(
+        "flex flex-col gap-4 p-4 rounded-xl border-1",
+        count === sets
+          ? "bg-green-50 border-green-600"
+          : "bg-white border-white"
+      )}
       onClick={handleClick}
     >
       <div className="flex gap-4">
@@ -55,6 +59,7 @@ export function ExerciseCard({ title, sets, reps, weight }: ExerciseCardProps) {
             {reps.map((r) => r.join(" ~ ")).join(" • ")}
           </span>
         </div>
+
         {weight && (
           <div>
             <span className="font-medium text-sm text-zinc-400 mr-4">
@@ -63,6 +68,20 @@ export function ExerciseCard({ title, sets, reps, weight }: ExerciseCardProps) {
             <span className="font-bold text-sm">{weight}</span>
           </div>
         )}
+
+        <div>
+          <span className="font-medium text-sm text-zinc-400 mr-4">Carga</span>{" "}
+          {/* <span className="font-bold text-sm">{weight}</span> */}
+          <input
+            className="text-sm border-1 border-zinc-300 rounded-md p-2"
+            onClick={(e) => e.stopPropagation()}
+            onFocus={() => setKeyboardIsFocused(true)}
+            onBlur={() => {
+              setCount(count - 1);
+              setKeyboardIsFocused(false);
+            }}
+          />
+        </div>
       </div>
     </div>
   );
