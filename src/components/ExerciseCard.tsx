@@ -8,8 +8,6 @@ type ExerciseCardProps = Exercise;
 
 export function ExerciseCard({ title, sets, reps, weight }: ExerciseCardProps) {
   const [count, setCount] = useState(0);
-  const [keyboardIsFocused, setKeyboardIsFocused] = useState(false);
-
   const handleClick = () => {
     if (count === sets) {
       setCount(0);
@@ -75,11 +73,7 @@ export function ExerciseCard({ title, sets, reps, weight }: ExerciseCardProps) {
           <input
             className="text-sm border-1 border-zinc-300 rounded-md p-2"
             onClick={(e) => e.stopPropagation()}
-            onFocus={() => setKeyboardIsFocused(true)}
-            onBlur={() => {
-              setCount(count - 1);
-              setKeyboardIsFocused(false);
-            }}
+            onBlur={() => setCount(count - 1)}
           />
         </div>
       </div>
