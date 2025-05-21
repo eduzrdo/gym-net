@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { IconBarbell, IconX } from "@tabler/icons-react";
-import Link from "next/link";
 import colors from "tailwindcss/colors";
 
 import { ExerciseCard, Header } from "@/src/components";
@@ -12,8 +11,10 @@ import { workoutPlan } from "@/src/data/workoutPlan";
 export default function Home() {
   const [showWorkoutList, setshowWorkoutList] = useState(false);
 
-  const router = useParams<{ workoutId: string }>();
-  const { workoutId } = router;
+  const params = useParams<{ workoutId: string }>();
+  const { workoutId } = params;
+
+  const router = useRouter();
 
   const handleShowWorkoutList = () => {
     setshowWorkoutList(true);
@@ -21,6 +22,11 @@ export default function Home() {
 
   const handleHideWorkoutList = () => {
     setshowWorkoutList(false);
+  };
+
+  const handleSelectWorkout = (index: number) => {
+    router.push(`/${index}`);
+    handleHideWorkoutList();
   };
 
   return (
@@ -47,12 +53,14 @@ export default function Home() {
                 </button>
               </li>
               {workoutPlan.map((workoutPlanItem, index) => (
-                <li
-                  key={workoutPlanItem.title}
-                  className="flex items-center gap-3 py-2"
-                >
-                  <IconBarbell color={colors.zinc[800]} size={24} />
-                  <Link href={`/${index}`}>{workoutPlanItem.title}</Link>
+                <li key={workoutPlanItem.title}>
+                  <button
+                    onClick={() => handleSelectWorkout(index)}
+                    className="flex items-center gap-3 py-2"
+                  >
+                    <IconBarbell color={colors.zinc[800]} size={24} />
+                    <p>{workoutPlanItem.title}</p>
+                  </button>
                 </li>
               ))}
             </ul>
