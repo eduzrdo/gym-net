@@ -1,6 +1,3 @@
-import { IconBarbell, IconTallymarks } from "@tabler/icons-react";
-import colors from "tailwindcss/colors";
-
 import { WelcomeHeader } from "@/src/components/WelcomeHeader";
 
 import { workoutPlan } from "@/src/data/workoutPlan";
