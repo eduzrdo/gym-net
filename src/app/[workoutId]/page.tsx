@@ -8,7 +8,7 @@ import colors from "tailwindcss/colors";
 import { ExerciseCard, Header } from "@/src/components";
 import { workoutPlan } from "@/src/data/workoutPlan";
 
-export default function Home() {
+export default function WorkoutPage() {
   const [showWorkoutList, setshowWorkoutList] = useState(false);
 
   const params = useParams<{ workoutId: string }>();
@@ -30,13 +30,13 @@ export default function Home() {
   };
 
   return (
-    <div className="relative flex flex-col h-[100dvh] md:max-w-96 mx-auto">
+    <div className="relative h-full flex flex-col">
       <Header
         title={workoutPlan[Number(workoutId)].title}
         onClickHeaderIcon={handleShowWorkoutList}
       />
 
-      <div className="flex flex-1 flex-col p-5 gap-5 overflow-scroll">
+      <div className="flex flex-1 flex-col p-5 gap-5 overflow-auto">
         {workoutPlan[Number(workoutId)].exercises.map((exercise) => (
           <ExerciseCard key={exercise.id} {...exercise} />
         ))}
