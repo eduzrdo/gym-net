@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { IconBarbell, IconX } from "@tabler/icons-react";
 import colors from "tailwindcss/colors";
 
-import { ExerciseCard, Header } from "@/src/components";
+import { Header, ExerciseCard_2 } from "@/src/components";
 import { workoutPlan } from "@/src/data/workoutPlan";
 
 export default function WorkoutPage() {
@@ -38,9 +38,23 @@ export default function WorkoutPage() {
 
       <div className="flex flex-1 flex-col p-5 gap-5 overflow-auto">
         {workoutPlan[Number(workoutId)].exercises.map((exercise) => (
-          <ExerciseCard key={exercise.id} {...exercise} />
+          // <ExerciseCard key={exercise.id} {...exercise} />
+          <ExerciseCard_2 key={exercise.id} {...exercise} />
         ))}
       </div>
+
+      {/* TODO: */}
+      {/* TOTAL PROGRESS BAR */}
+      {/* <div className="flex items-center py-3 px-5 gap-2.5 bg-white border-t-1 border-zinc-200">
+        <span className="text-sm font-semibold">25%</span>
+
+        <div className="flex-1 bg-zinc-200 rounded-full">
+          <div
+            className="bg-green-600 h-1 rounded-full"
+            style={{ width: "33%" }}
+          />
+        </div>
+      </div> */}
 
       {showWorkoutList && (
         <div className="absolute top-0 left-0 w-full h-full bg-black/50 flex flex-col justify-end gap-5">

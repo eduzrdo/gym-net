@@ -4,12 +4,11 @@ import { clsx } from "clsx";
 
 import { Exercise } from "@/src/data/workoutPlan";
 
-type ExerciseCardProps = Exercise;
-
-export function ExerciseCard({ title, sets, reps, weight }: ExerciseCardProps) {
+export function ExerciseCard({ title, reps, weight }: Exercise) {
   const [count, setCount] = useState(0);
+
   const handleClick = () => {
-    if (count === sets) {
+    if (count === reps.length) {
       setCount(0);
       return;
     }
@@ -21,7 +20,7 @@ export function ExerciseCard({ title, sets, reps, weight }: ExerciseCardProps) {
     <div
       className={clsx(
         "flex flex-col gap-4 p-4 rounded-xl border-1",
-        count === sets
+        count === reps.length
           ? "bg-green-50 border-green-600"
           : "bg-white border-white"
       )}
@@ -31,23 +30,21 @@ export function ExerciseCard({ title, sets, reps, weight }: ExerciseCardProps) {
         <h3 className="flex-1">{title}</h3>
 
         <div className="flex gap-1 h-5 items-stretch">
-          {Array(sets)
-            .fill(1)
-            .map((set, index) => (
-              <div
-                key={index}
-                className={`w-1 rounded-full ${
-                  index < count ? "bg-green-600" : "bg-zinc-300"
-                }`}
-              ></div>
-            ))}
+          {Array.from({ length: reps.length }).map((_, index) => (
+            <div
+              key={index}
+              className={`w-1 rounded-full ${
+                index < count ? "bg-green-600" : "bg-zinc-300"
+              }`}
+            ></div>
+          ))}
         </div>
       </div>
 
       <div className="flex flex-col gap-2.5">
         <div>
           <span className="font-medium text-sm text-zinc-400 mr-4">Séries</span>{" "}
-          <span className="font-bold text-sm">{sets}</span>
+          <span className="font-bold text-sm">{reps.length}</span>
         </div>
         <div>
           <span className="font-medium text-sm text-zinc-400 mr-4">

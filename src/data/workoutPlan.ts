@@ -1,176 +1,220 @@
 export type Exercise = {
   id: number;
   title: string;
-  sets: number;
   reps: number[][];
   weight?: number[];
+  execution?: "dropset" | "range";
 };
-
-export type Workout = {
-  title: string;
-  exercises: Exercise[];
-};
-
+export type Workout = { title: string; exercises: Exercise[] };
 export type WorkoutPlan = Workout[];
-
 export const workoutPlan: WorkoutPlan = [
   {
-    title: "Push 1 • Peito e tríceps",
+    title: "Peito e dorsal",
     exercises: [
       {
         id: 0,
-        title: "⁠Supino inclinado com halter",
-        sets: 4,
-        reps: [[6, 10]],
+        title: "⁠Supino inclinado com halteres",
+        reps: [
+          [6, 8],
+          [6, 8],
+          [6, 8],
+        ],
+        execution: "range",
       },
       {
         id: 1,
-        title: "⁠Supino reto máquina (drop-set)",
-        sets: 4,
-        reps: [[10], [10]],
+        title: "Puxada aberta na polia",
+        reps: [
+          [6, 8],
+          [6, 8],
+          [6, 8],
+        ],
+        execution: "range",
       },
       {
         id: 2,
-        title: "⁠Crossover",
-        sets: 4,
-        reps: [[6, 10]],
+        title: "Crucifixo máquina",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
       },
       {
         id: 3,
-        title: "⁠Desenvolvimento",
-        sets: 3,
-        reps: [[6, 10]],
+        title: "Pull down na polia",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
       },
       {
         id: 4,
-        title: "⁠Elevação lateral com halter sentado",
-        sets: 4,
-        reps: [[10], [10]],
+        title: "Crossover polia alta",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
       },
       {
         id: 5,
-        title: "⁠Elevação frontal com halter",
-        sets: 4,
-        reps: [[6, 10]],
+        title: "Remada com halteres no banco",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
       },
       {
         id: 6,
-        title: "⁠Tríceps na Barra W (polia)",
-        sets: 3,
-        reps: [[6, 10]],
-      },
-      {
-        id: 7,
-        title: "⁠Tríceps testa (barra)",
-        sets: 3,
-        reps: [[6, 10]],
-      },
-      {
-        id: 8,
-        title: "⁠Tríceps corda unilateral (polia)",
-        sets: 3,
-        reps: [[6, 10]],
+        title: "Abdominal declinado",
+        reps: [[20], [20], [20], [20]],
       },
     ],
   },
   {
-    title: "Pull • Dorsal e Bíceps",
+    title: "Braços",
     exercises: [
       {
         id: 0,
-        title: "Puxada alta com pegada aberta",
-        sets: 3,
-        reps: [[6, 10]],
+        title: "Rosca Bayesian",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
       },
       {
         id: 1,
-        title: "⁠Puxada alta com triângulo",
-        sets: 3,
-        reps: [[6, 10]],
+        title: "Tríceps pulley barra reta",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
       },
       {
         id: 2,
-        title: "⁠Remada baixa com triângulo",
-        sets: 3,
-        reps: [[6, 10]],
+        title: "Rosca direta com halteres com giro",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
       },
       {
         id: 3,
-        title: "⁠Serrote com halter",
-        sets: 3,
-        reps: [[6, 10]],
+        title: "Tríceps testa com barra W",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
       },
       {
         id: 4,
-        title: "⁠Posterior de ombro na máquina",
-        sets: 3,
-        reps: [[6, 10]],
+        title: "Rosca scott com halter unilateral",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
       },
       {
         id: 5,
-        title: "⁠Encolhimento no smith",
-        sets: 3,
-        reps: [[6, 10]],
+        title: "Tríceps francês",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
       },
       {
         id: 6,
-        title: "⁠Rosca direta no banco inclinado",
-        sets: 4,
-        reps: [[6, 10]],
-      },
-      {
-        id: 7,
-        title: "⁠Rosca direta na corda",
-        sets: 4,
-        reps: [[6, 10]],
-      },
-      {
-        id: 8,
-        title: "⁠Rosca direta na barra com pegada pronada",
-        sets: 4,
-        reps: [[6, 10]],
+        title: "Abdominal infra",
+        reps: [[20], [20], [20], [20]],
       },
     ],
   },
-
   {
-    title: "Push 2 • Ombros e trapézio",
+    title: "Ombros e trapézio",
     exercises: [
       {
         id: 0,
         title: "Desenvolvimento com halter",
-        sets: 4,
-        reps: [[6, 10]],
+        reps: [
+          [6, 10],
+          [6, 10],
+          [6, 10],
+        ],
+        execution: "range",
       },
       {
         id: 1,
         title: "Elevação lateral com halter (drop-set)",
-        sets: 4,
-        reps: [[10], [10]],
+        reps: [
+          [10, 10],
+          [10, 10],
+          [10, 10],
+        ],
+        execution: "dropset",
       },
       {
         id: 2,
         title: "Elevação frontal na polia",
-        sets: 4,
-        reps: [[6, 10]],
+        reps: [
+          [10, 10],
+          [10, 10],
+          [10, 10],
+        ],
+        execution: "range",
       },
       {
         id: 3,
         title: "Crucifixo invertido máquina",
-        sets: 4,
-        reps: [[6, 10]],
+        reps: [
+          [6, 10],
+          [6, 10],
+          [6, 10],
+        ],
+        execution: "range",
       },
       {
         id: 4,
         title: "Encolhimento com halter",
-        sets: 4,
-        reps: [[6, 10]],
+        reps: [
+          [6, 10],
+          [6, 10],
+          [6, 10],
+        ],
+        execution: "range",
       },
       {
         id: 5,
         title: "Remada alta nas costas (smith)",
-        sets: 4,
-        reps: [[6, 10]],
+        reps: [
+          [6, 10],
+          [6, 10],
+          [6, 10],
+        ],
+        execution: "range",
+      },
+      {
+        id: 6,
+        title: "Abdominal lateral",
+        reps: [[20], [20], [20], [20]],
       },
     ],
   },

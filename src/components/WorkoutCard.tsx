@@ -41,7 +41,7 @@ const letters = [
 export const WorkoutCard = ({ workout, number }: WorkoutCardProps) => {
   const numberOfExercises = workout.exercises.length;
   const numberOfSets = workout.exercises
-    .map((e) => e.sets)
+    .map((e) => e.reps.length)
     .reduce((a, b) => a + b, 0);
 
   return (
