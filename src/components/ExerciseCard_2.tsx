@@ -161,7 +161,8 @@ export function ExerciseCard_2({
             {reps.map((_, index) => (
               <Input
                 key={`weight${index}`}
-                defaultValue={weight?.[index] ?? 0}
+                type="number"
+                defaultValue={weight[index] ? weight[index] : ""}
                 onChange={(e) =>
                   handleSaveLoad(number, index, Number(e.target.value))
                 }
@@ -228,7 +229,6 @@ export function ExerciseCard_2({
 function Input(props: InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
-      type="number"
       className="w-full h-8 text-center border-2 border-zinc-200 rounded-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none focus:border-green-600 outline-none"
       min={0}
       onClick={(e) => e.stopPropagation()}
