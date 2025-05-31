@@ -7,6 +7,7 @@ import { WelcomeHeader } from "@/src/components/WelcomeHeader";
 
 import { WorkoutCard } from "@/src/components/WorkoutCard";
 import { WorkoutPlan } from "@/src/data/workoutPlan";
+import { workoutPlan } from "@/src/data/workoutPlan";
 
 export default function Home() {
   const [loadedWorkoutPlan, setLoadedWorkoutPlan] =
@@ -18,6 +19,9 @@ export default function Home() {
 
     if (workoutPlanData) {
       setLoadedWorkoutPlan(workoutPlanData);
+    } else {
+      localStorageManager.create("workoutPlan", workoutPlan);
+      setLoadedWorkoutPlan(workoutPlan);
     }
   }, []);
 
