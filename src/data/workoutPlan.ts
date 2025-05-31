@@ -6,7 +6,9 @@ export type Exercise = {
   execution?: "dropset" | "range";
 };
 export type Workout = { title: string; exercises: Exercise[] };
+
 export type WorkoutPlan = Workout[];
+
 export const workoutPlan: WorkoutPlan = [
   {
     title: "Peito e dorsal",
