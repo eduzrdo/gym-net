@@ -1,15 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { IconBarbell, IconX } from "@tabler/icons-react";
 import colors from "tailwindcss/colors";
 
 import { Header, ExerciseCard_2 } from "@/src/components";
-import { workoutPlan } from "@/src/data/workoutPlan";
+import { WorkoutPlan } from "@/src/data/workoutPlan";
+import localStorageManager from "@/src/services/localStorage";
 
 export default function WorkoutPage() {
   const [showWorkoutList, setshowWorkoutList] = useState(false);
+
+  const [loadedWorkoutPlan, setLoadedWorkoutPlan] =
+    useState<WorkoutPlan | null>(null);
 
   const params = useParams<{ workoutId: string }>();
   const { workoutId } = params;
@@ -29,18 +33,56 @@ export default function WorkoutPage() {
     handleHideWorkoutList();
   };
 
+  const handleSaveLoad = (
+    exerciseIndex: number,
+    weightIndex: number,
+    weight: number
+  ) => {
+    const payload = [...loadedWorkoutPlan!];
+
+    payload[Number(workoutId)].exercises[exerciseIndex].weight[weightIndex] =
+      weight;
+
+    localStorageManager.update("workoutPlan", payload);
+
+    setLoadedWorkoutPlan(payload);
+  };
+
+  useEffect(() => {
+    const workoutPlan = localStorageManager.read<WorkoutPlan>("workoutPlan");
+
+    if (workoutPlan) {
+      setLoadedWorkoutPlan(workoutPlan);
+    }
+  }, []);
+
+  if (!loadedWorkoutPlan) {
+    return (
+      <div className="h-[100dvh] flex justify-center items-center p-5">
+        <p className="text-lg font-semibold">Carregando treino...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="relative h-full flex flex-col">
       <Header
-        title={workoutPlan[Number(workoutId)].title}
+        title={loadedWorkoutPlan[Number(workoutId)].title}
         onClickHeaderIcon={handleShowWorkoutList}
       />
 
       <div className="flex flex-1 flex-col p-5 gap-5 overflow-auto">
-        {workoutPlan[Number(workoutId)].exercises.map((exercise) => (
-          // <ExerciseCard key={exercise.id} {...exercise} />
-          <ExerciseCard_2 key={exercise.id} {...exercise} />
-        ))}
+        {loadedWorkoutPlan[Number(workoutId)].exercises.map(
+          (exercise, index) => (
+            // <ExerciseCard key={exercise.id} {...exercise} />
+            <ExerciseCard_2
+              key={exercise.id}
+              {...exercise}
+              handleSaveLoad={handleSaveLoad}
+              number={index}
+            />
+          )
+        )}
       </div>
 
       {/* TODO: */}
@@ -66,7 +108,7 @@ export default function WorkoutPage() {
                   <IconX color={colors.zinc[500]} size={24} />
                 </button>
               </li>
-              {workoutPlan.map((workoutPlanItem, index) => (
+              {loadedWorkoutPlan.map((workoutPlanItem, index) => (
                 <li key={workoutPlanItem.title}>
                   <button
                     onClick={() => handleSelectWorkout(index)}

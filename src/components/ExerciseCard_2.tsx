@@ -1,9 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { InputHTMLAttributes, useState } from "react";
 import {
-  // IconCheck,
-  // IconClockPause,
   IconNote,
   IconProps,
   IconRepeat,
@@ -24,12 +22,23 @@ import colors from "tailwindcss/colors";
 import { Exercise } from "@/src/data/workoutPlan";
 import { connectors } from "@/src/utils/exercise";
 
+type ExerciseCard_2Props = Exercise & {
+  number: number;
+  handleSaveLoad: (
+    exerciseIndex: number,
+    weightIndex: number,
+    weight: number
+  ) => void;
+};
+
 export function ExerciseCard_2({
   title,
   reps,
-  // weight,
+  weight,
   execution,
-}: Exercise) {
+  number,
+  handleSaveLoad,
+}: ExerciseCard_2Props) {
   const [setsDone, setSetsDone] = useState(0);
   const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -150,7 +159,13 @@ export function ExerciseCard_2({
           {/* WEIGHT */}
           <Column icon={IconWeight}>
             {reps.map((_, index) => (
-              <Input key={`weight${index}`} />
+              <Input
+                key={`weight${index}`}
+                defaultValue={weight?.[index] ?? 0}
+                onChange={(e) =>
+                  handleSaveLoad(number, index, Number(e.target.value))
+                }
+              />
             ))}
           </Column>
 
@@ -210,13 +225,14 @@ export function ExerciseCard_2({
   );
 }
 
-function Input() {
+function Input(props: InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
       type="number"
       className="w-full h-8 text-center border-2 border-zinc-200 rounded-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none focus:border-green-600 outline-none"
       min={0}
       onClick={(e) => e.stopPropagation()}
+      {...props}
     />
   );
 }

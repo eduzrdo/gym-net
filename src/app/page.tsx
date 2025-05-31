@@ -1,16 +1,41 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import localStorageManager from "@/src/services/localStorage";
+
 import { WelcomeHeader } from "@/src/components/WelcomeHeader";
 
-import { workoutPlan } from "@/src/data/workoutPlan";
-import { WorkoutCard } from "../components/WorkoutCard";
+import { WorkoutCard } from "@/src/components/WorkoutCard";
+import { WorkoutPlan } from "@/src/data/workoutPlan";
 
 export default function Home() {
+  const [loadedWorkoutPlan, setLoadedWorkoutPlan] =
+    useState<WorkoutPlan | null>(null);
+
+  useEffect(() => {
+    const workoutPlanData =
+      localStorageManager.read<WorkoutPlan>("workoutPlan");
+
+    if (workoutPlanData) {
+      setLoadedWorkoutPlan(workoutPlanData);
+    }
+  }, []);
+
+  if (!loadedWorkoutPlan) {
+    return (
+      <div className="h-[100dvh] flex justify-center items-center p-5">
+        <p className="text-lg font-semibold">Carregando plano de treino...</p>
+      </div>
+    );
+  }
+
   return (
     <div>
       <WelcomeHeader />
 
       <div className="flex flex-col gap-4 p-5">
-        {workoutPlan.map((workout, index) => (
-          <WorkoutCard key={index} workout={workout} number={index} />
+        {loadedWorkoutPlan.map((workout, index) => (
+          <WorkoutCard key={workout.id} workout={workout} number={index} />
         ))}
       </div>
     </div>
