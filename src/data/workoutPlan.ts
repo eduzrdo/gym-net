@@ -90,7 +90,7 @@ export const workoutPlan: WorkoutPlan = [
   },
   {
     id: "7c3bfe76-2b6e-4370-a2f9-3738f1f1cc88",
-    title: "Braços",
+    title: "Membros superiores",
     exercises: [
       {
         id: "1a7f0eb2-7e3d-44de-9fe3-2ecbbdbf4472",
@@ -244,9 +244,88 @@ export const workoutPlan: WorkoutPlan = [
       },
     ],
   },
+  {
+    id: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    title: "Membros inferiores",
+    exercises: [
+      {
+        id: "b3e1c45d-9a6a-4c3e-92c1-6c2d17fe6a58",
+        title: "Cadeira abdutora",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
+        weight: [0, 0, 0],
+      },
+      {
+        id: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+        title: "Agachamento smith",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
+        weight: [12.5, 15, 15],
+      },
+      {
+        id: "e2f3c4b5-d6a7-4e98-a3fc-98e5a7b0de49",
+        title: "Leg 45",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
+        weight: [0, 0, 0],
+      },
+      {
+        id: "7d3e1a2f-8b0c-45fd-bb79-d1e2f3c4a5b6",
+        title: "Cadeira flexora",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
+        weight: [0, 0, 0],
+      },
+      {
+        id: "0f1a2b3c-4d5e-6789-abcd-ef0123456789",
+        title: "Cadeira extensora",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
+        weight: [0, 0, 0],
+      },
+      {
+        id: "9a8b7c6d-5e4f-3a2b-1c0d-9e8f7a6b5c4d",
+        title: "Cadeira adutora",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
+        weight: [0, 0, 0],
+      },
+      {
+        id: "3c2d1e0f-4a5b-6c7d-8e9f-0a1b2c3d4e5f",
+        title: "Panturrilha",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
+        weight: [0, 0, 0, 0],
+      },
+    ],
+  },
 ];
-
-// "3f5e7d1e-9d8f-4d17-8e9f-ec1d96255d47"
-// "7c3bfe76-2b6e-4370-a2f9-3738f1f1cc88"
-// "1b9bfa4e-8ce6-48f0-b6d6-65ab2c1ff12e"
-// "c2179e3a-9b5f-4c40-8bc5-efda5c5c56c9"
