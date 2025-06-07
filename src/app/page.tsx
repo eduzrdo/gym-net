@@ -5,13 +5,18 @@ import localStorageManager from "@/src/services/localStorage";
 
 import { WelcomeHeader } from "@/src/components/WelcomeHeader";
 
-import { WorkoutCard } from "@/src/components/WorkoutCard";
+import { WorkoutCard, Button } from "@/src/components";
 import { WorkoutPlan } from "@/src/data/workoutPlan";
 import { workoutPlan } from "@/src/data/workoutPlan";
 
 export default function Home() {
   const [loadedWorkoutPlan, setLoadedWorkoutPlan] =
     useState<WorkoutPlan | null>(null);
+
+  const handleUpdateWorkoutPlan = () => {
+    localStorageManager.update("workoutPlan", workoutPlan);
+    setLoadedWorkoutPlan(workoutPlan);
+  };
 
   useEffect(() => {
     const workoutPlanData =
@@ -34,13 +39,19 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col h-full">
       <WelcomeHeader />
 
-      <div className="flex flex-col gap-4 p-5">
+      <div className="flex flex-col gap-4 p-5 flex-1">
         {loadedWorkoutPlan.map((workout, index) => (
           <WorkoutCard key={workout.id} workout={workout} number={index} />
         ))}
+      </div>
+
+      <div className="p-5">
+        <Button onClick={handleUpdateWorkoutPlan}>
+          Atualizar plano de treino
+        </Button>
       </div>
     </div>
   );
