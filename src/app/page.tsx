@@ -10,12 +10,23 @@ import { WorkoutPlan } from "@/src/data/workoutPlan";
 import { workoutPlan } from "@/src/data/workoutPlan";
 
 export default function Home() {
+  const [
+    showConfirmUpdateWorkoutPlanButton,
+    setShowConfirmUpdateWorkoutPlanButton,
+  ] = useState(false);
+
   const [loadedWorkoutPlan, setLoadedWorkoutPlan] =
     useState<WorkoutPlan | null>(null);
 
   const handleUpdateWorkoutPlan = () => {
-    localStorageManager.update("workoutPlan", workoutPlan);
-    setLoadedWorkoutPlan(workoutPlan);
+    if (showConfirmUpdateWorkoutPlanButton) {
+      localStorageManager.update("workoutPlan", workoutPlan);
+      setLoadedWorkoutPlan(workoutPlan);
+      setShowConfirmUpdateWorkoutPlanButton(false);
+      return;
+    }
+
+    setShowConfirmUpdateWorkoutPlanButton(true);
   };
 
   useEffect(() => {
@@ -49,9 +60,15 @@ export default function Home() {
       </div>
 
       <div className="p-5">
-        <Button onClick={handleUpdateWorkoutPlan}>
-          Atualizar plano de treino
-        </Button>
+        {showConfirmUpdateWorkoutPlanButton ? (
+          <Button onClick={handleUpdateWorkoutPlan} buttonStyle="danger">
+            Sim, atualizar agora
+          </Button>
+        ) : (
+          <Button onClick={() => setShowConfirmUpdateWorkoutPlanButton(true)}>
+            Atualizar plano de treino
+          </Button>
+        )}
       </div>
     </div>
   );
