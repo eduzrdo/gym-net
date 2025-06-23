@@ -7,31 +7,40 @@ import localStorageManager from "@/src/services/localStorage";
 
 export const WelcomeHeader = () => {
   function handleExportWorkoutPlan() {
-    const workoutPlanData =
-      localStorageManager.read<WorkoutPlan>("workoutPlan");
+    try {
+      const workoutPlanData =
+        localStorageManager.read<WorkoutPlan>("workoutPlan");
 
-    if (workoutPlanData) {
-      const blob = new Blob([JSON.stringify(workoutPlanData)], {
-        type: "application/json",
-      });
+      if (workoutPlanData) {
+        const blob = new Blob([JSON.stringify(workoutPlanData)], {
+          type: "application/json",
+        });
 
-      const url = URL.createObjectURL(blob);
+        const url = URL.createObjectURL(blob);
 
-      const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-      const fileName = `dados-${timestamp}.json`;
+        const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+        const fileName = `plano_de_treino-${timestamp}.json`;
 
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = fileName;
-      a.click();
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = fileName;
+        a.click();
 
-      URL.revokeObjectURL(url);
+        URL.revokeObjectURL(url);
 
-      alert("Plano de treino exportado com sucesso!");
-      return;
+        alert("Plano de treino exportado com sucesso!");
+        return;
+      }
+
+      alert(
+        "Não foi possível exportar o plano de treino! Por favor, tente novamente."
+      );
+    } catch (error: unknown) {
+      alert(
+        "Ocorreu um erro ao exportar o plano de treino! Por favor, tente novamente mais tarde."
+      );
+      console.error(error);
     }
-
-    alert("Não foi possível exportar o plano de treino!");
   }
 
   return (

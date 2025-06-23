@@ -23,7 +23,7 @@ export const workoutPlan: WorkoutPlan = [
           [6, 8],
         ],
         execution: "range",
-        weight: [20, 22, 24],
+        weight: [20, 22, 22],
       },
       {
         id: "9b2f08fa-3f27-4cdd-9f36-2d7d1bff4fd3",
@@ -34,7 +34,7 @@ export const workoutPlan: WorkoutPlan = [
           [6, 8],
         ],
         execution: "range",
-        weight: [59, 59, 61],
+        weight: [59, 61, 61],
       },
       {
         id: "3e1f1c70-983d-4b95-9edc-cfd3f648d7d7",
@@ -45,7 +45,7 @@ export const workoutPlan: WorkoutPlan = [
           [8, 10],
         ],
         execution: "range",
-        weight: [86, 93, 93],
+        weight: [79, 86, 93],
       },
       {
         id: "e2e9c3bb-424f-4d70-90cc-5e99edb54b34",
@@ -56,7 +56,7 @@ export const workoutPlan: WorkoutPlan = [
           [8, 10],
         ],
         execution: "range",
-        weight: [59, 63, 63],
+        weight: [0, 0, 0],
       },
       {
         id: "8433a162-9abf-4f14-8f6c-f0e21e1eb1a3",
@@ -101,7 +101,7 @@ export const workoutPlan: WorkoutPlan = [
           [8, 10],
         ],
         execution: "range",
-        weight: [10, 10, 10],
+        weight: [10, 12.5, 12.5],
       },
       {
         id: "d31995ff-d2a6-490f-82f5-0c7b2e2caa33",
@@ -112,7 +112,7 @@ export const workoutPlan: WorkoutPlan = [
           [8, 10],
         ],
         execution: "range",
-        weight: [26.1, 26.1, 26.1],
+        weight: [26, 28, 30],
       },
       {
         id: "9e4d50c3-03b3-4d1d-9b91-2fdb4cb2269c",
@@ -123,7 +123,7 @@ export const workoutPlan: WorkoutPlan = [
           [8, 10],
         ],
         execution: "range",
-        weight: [14, 14, 14],
+        weight: [16, 16, 16],
       },
       {
         id: "aaf7d152-4c80-4377-b3c6-7b4356ea0b99",
@@ -145,7 +145,7 @@ export const workoutPlan: WorkoutPlan = [
           [8, 10],
         ],
         execution: "range",
-        weight: [21, 21, 21],
+        weight: [41, 41, 41],
       },
       {
         id: "6c3bc6e1-3c28-44cb-832a-b2ae7e2ff147",
@@ -179,7 +179,7 @@ export const workoutPlan: WorkoutPlan = [
           [6, 10],
         ],
         execution: "range",
-        weight: [18, 18, 20],
+        weight: [16, 18, 18],
       },
       {
         id: "25e29583-169c-4434-9c9f-c5c12ef85e62",
@@ -190,7 +190,7 @@ export const workoutPlan: WorkoutPlan = [
           [6, 10],
         ],
         execution: "dropset",
-        weight: [7.5, 7.5, 7.5],
+        weight: [12, 14, 14],
       },
       {
         id: "9b7df2e1-b94b-4c5c-a2dc-49ae01e7d5f0",
@@ -257,7 +257,7 @@ export const workoutPlan: WorkoutPlan = [
           [8, 10],
         ],
         execution: "range",
-        weight: [59.63, 63.64, 63.64],
+        weight: [0, 0, 0],
       },
       {
         id: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
@@ -268,7 +268,7 @@ export const workoutPlan: WorkoutPlan = [
           [8, 10],
         ],
         execution: "range",
-        weight: [20, 30, 30],
+        weight: [12.5, 15, 15],
       },
       {
         id: "e2f3c4b5-d6a7-4e98-a3fc-98e5a7b0de49",
@@ -279,21 +279,10 @@ export const workoutPlan: WorkoutPlan = [
           [8, 10],
         ],
         execution: "range",
-        weight: [120, 120, 140],
+        weight: [0, 0, 0],
       },
       {
         id: "7d3e1a2f-8b0c-45fd-bb79-d1e2f3c4a5b6",
-        title: "Cadeira extensora",
-        reps: [
-          [8, 10],
-          [8, 10],
-          [8, 10],
-        ],
-        execution: "range",
-        weight: [59, 59, 59],
-      },
-      {
-        id: "0f1a2b3c-4d5e-6789-abcd-ef0123456789",
         title: "Cadeira flexora",
         reps: [
           [8, 10],
@@ -301,11 +290,11 @@ export const workoutPlan: WorkoutPlan = [
           [8, 10],
         ],
         execution: "range",
-        weight: [50, 50, 50],
+        weight: [0, 0, 0],
       },
       {
-        id: "9a8b7c6d-5e4f-20a2-1c0d-9e8f7a6b5c4d",
-        title: "Elevação Pélvica",
+        id: "0f1a2b3c-4d5e-6789-abcd-ef0123456789",
+        title: "Cadeira extensora",
         reps: [
           [8, 10],
           [8, 10],
@@ -323,7 +312,7 @@ export const workoutPlan: WorkoutPlan = [
           [8, 10],
         ],
         execution: "range",
-        weight: [63, 63, 63],
+        weight: [0, 0, 0],
       },
       {
         id: "3c2d1e0f-4a5b-6c7d-8e9f-0a1b2c3d4e5f",
@@ -335,7 +324,7 @@ export const workoutPlan: WorkoutPlan = [
           [8, 10],
         ],
         execution: "range",
-        weight: [81, 81, 90, 90],
+        weight: [0, 0, 0, 0],
       },
     ],
   },
