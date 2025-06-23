@@ -11,8 +11,8 @@ export function Button({ buttonStyle = "default", ...props }: ButtonProps) {
       className={clsx(
         "w-full text-white font-semibold rounded-xl py-2 px-4 h-[52px] transition-colors cursor-pointer",
         buttonStyle === "danger"
-          ? "bg-red-600 active:bg-red-700"
-          : "bg-green-600 active:bg-green-700"
+          ? "bg-red-600 active:bg-red-700 hover:bg-red-500 transition-colors"
+          : "bg-green-600 active:bg-green-700 hover:bg-green-500 transition-colors"
       )}
       {...props}
     />
