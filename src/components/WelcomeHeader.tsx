@@ -1,9 +1,9 @@
 import { IconFileExport } from "@tabler/icons-react";
 
-import { IconButton } from "@/src/components/IconButton";
-import { WorkoutPlan } from "@/src/data/workoutPlan";
+import { IconButton } from "@/components/IconButton";
+import { WorkoutPlan } from "@/data/workoutPlan";
 
-import localStorageManager from "@/src/services/localStorage";
+import localStorageManager from "@/services/localStorage";
 
 export const WelcomeHeader = () => {
   function handleExportWorkoutPlan() {

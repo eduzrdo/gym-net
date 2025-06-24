@@ -17,10 +17,10 @@ import {
 import clsx from "clsx";
 import colors from "tailwindcss/colors";
 
-// import { Tag } from "@/src/components/Tag";
+// import { Tag } from "@/components/Tag";
 
-import { Exercise } from "@/src/data/workoutPlan";
-import { connectors } from "@/src/utils/exercise";
+import { Exercise } from "@/data/workoutPlan";
+import { connectors } from "@/utils/exercise";
 
 type ExerciseCard_2Props = Exercise & {
   number: number;

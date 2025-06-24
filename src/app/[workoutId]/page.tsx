@@ -5,9 +5,10 @@ import { useParams, useRouter } from "next/navigation";
 import { IconBarbell, IconX } from "@tabler/icons-react";
 import colors from "tailwindcss/colors";
 
-import { Header, ExerciseCard_2 } from "@/src/components";
-import { WorkoutPlan } from "@/src/data/workoutPlan";
-import localStorageManager from "@/src/services/localStorage";
+import { Header, ExerciseCard_2 } from "@/components";
+import { WorkoutPlan } from "@/data/workoutPlan";
+
+import localStorageManager from "@/services/localStorage";
 
 export default function WorkoutPage() {
   const [showWorkoutList, setshowWorkoutList] = useState(false);

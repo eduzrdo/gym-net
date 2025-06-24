@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import localStorageManager from "@/src/services/localStorage";
+import { Button } from "@/components/ui/button";
 
-import { WelcomeHeader } from "@/src/components/WelcomeHeader";
+import { WelcomeHeader, WorkoutCard } from "@/components";
 
-import { WorkoutCard, Button } from "@/src/components";
-import { WorkoutPlan } from "@/src/data/workoutPlan";
-import { workoutPlan } from "@/src/data/workoutPlan";
+import { WorkoutPlan, workoutPlan } from "@/data/workoutPlan";
+
+import localStorageManager from "@/services/localStorage";
 
 export default function Home() {
   const [
@@ -61,7 +61,7 @@ export default function Home() {
 
       <div className="p-5">
         {showConfirmUpdateWorkoutPlanButton ? (
-          <Button onClick={handleUpdateWorkoutPlan} buttonStyle="danger">
+          <Button onClick={handleUpdateWorkoutPlan} variant="destructive">
             Sim, atualizar agora
           </Button>
         ) : (
