@@ -50,7 +50,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col flex-1">
       <WelcomeHeader />
 
       <div className="flex flex-col gap-4 p-5 flex-1">

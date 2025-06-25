@@ -262,6 +262,7 @@ export function ExerciseCard_2({
                             <ShadcnInput
                               placeholder="Digite sua anotação aqui"
                               className="w-full"
+                              autoFocus
                               {...field}
                             />
                           </FormControl>

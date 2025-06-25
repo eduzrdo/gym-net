@@ -1,4 +1,5 @@
-import { IconListLetters } from "@tabler/icons-react";
+import { IconListLetters, IconArrowLeft } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
 import colors from "tailwindcss/colors";
 
 type HeaderProps = {
@@ -7,8 +8,13 @@ type HeaderProps = {
 };
 
 export function Header({ title, onClickHeaderIcon }: HeaderProps) {
+  const router = useRouter();
+
   return (
     <div className="flex items-center p-5 pt-10 bg-green-600 rounded-br-xl rounded-bl-xl gap-4">
+      <button onClick={router.back} className="cursor-pointer">
+        <IconArrowLeft color={colors.white} />
+      </button>
       <p className="flex-1 text-white text-xl font-bold overflow-ellipsis truncate">
         {title}
       </p>

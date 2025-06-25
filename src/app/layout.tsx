@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${archivo.className} antialiased`}>
-        <div className="max-w-sm mx-auto h-dvh">{children}</div>
+        <div className="lg:max-w-sm mx-auto flex">{children}</div>
       </body>
     </html>
   );
