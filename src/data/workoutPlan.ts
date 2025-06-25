@@ -4,7 +4,9 @@ export type Exercise = {
   reps: number[][];
   weight: number[];
   execution?: "dropset" | "range";
+  notes?: string | null;
 };
+
 export type Workout = { id: string; title: string; exercises: Exercise[] };
 
 export type WorkoutPlan = Workout[];

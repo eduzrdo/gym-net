@@ -5,10 +5,10 @@ import { useParams, useRouter } from "next/navigation";
 import { IconBarbell, IconX } from "@tabler/icons-react";
 import colors from "tailwindcss/colors";
 
-import { Header, ExerciseCard_2 } from "@/components";
-import { WorkoutPlan } from "@/data/workoutPlan";
+import { Header, ExerciseCard_2 } from "@/src/components";
+import { WorkoutPlan } from "@/src/data/workoutPlan";
 
-import localStorageManager from "@/services/localStorage";
+import localStorageManager from "@/src/services/localStorage";
 
 export default function WorkoutPage() {
   const [showWorkoutList, setshowWorkoutList] = useState(false);
@@ -34,7 +34,7 @@ export default function WorkoutPage() {
     handleHideWorkoutList();
   };
 
-  const handleSaveLoad = (
+  const handleSaveWeight = (
     exerciseIndex: number,
     weightIndex: number,
     weight: number
@@ -54,6 +54,21 @@ export default function WorkoutPage() {
 
     if (workoutPlan) {
       setLoadedWorkoutPlan(workoutPlan);
+
+      // TODO: DELETE ALL NOTES
+
+      // const payload = [...workoutPlan];
+
+      // workoutPlan?.forEach((w, i) => {
+      //   const exercises = payload[i].exercises.map((e) => ({
+      //     ...e,
+      //     notes: undefined,
+      //   }));
+
+      //   payload[i].exercises = exercises;
+      // });
+
+      // localStorageManager.update("workoutPlan", payload);
     }
   }, []);
 
@@ -79,8 +94,8 @@ export default function WorkoutPage() {
             <ExerciseCard_2
               key={exercise.id}
               {...exercise}
-              handleSaveLoad={handleSaveLoad}
-              number={index}
+              handleSaveWeight={handleSaveWeight}
+              exerciseIndex={index}
             />
           )
         )}

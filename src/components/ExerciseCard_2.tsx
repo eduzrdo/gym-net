@@ -1,6 +1,7 @@
 "use client";
 
 import { InputHTMLAttributes, useState } from "react";
+import { usePathname } from "next/navigation";
 import {
   IconNote,
   IconProps,
@@ -13,36 +14,78 @@ import {
   IconCheck,
   IconCircleCheck,
   IconCircleCheckFilled,
+  IconTrash,
 } from "@tabler/icons-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+} from "@/src/components/ui/dialog";
+
 import clsx from "clsx";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import colors from "tailwindcss/colors";
 
-// import { Tag } from "@/components/Tag";
+import { Input as ShadcnInput } from "@/src/components/ui/input";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormControl,
+  FormMessage,
+} from "@/src/components/ui/form";
+import { Button } from "@/src/components/ui/button";
+// import { Tag } from "@/src/components/Tag";
 
-import { Exercise } from "@/data/workoutPlan";
-import { connectors } from "@/utils/exercise";
+import { Exercise, WorkoutPlan } from "@/src/data/workoutPlan";
+import { connectors } from "src/utils/exercise";
+
+import localStorageManager from "@/src/services/localStorage";
 
 type ExerciseCard_2Props = Exercise & {
-  number: number;
-  handleSaveLoad: (
+  exerciseIndex: number;
+  handleSaveWeight: (
     exerciseIndex: number,
     weightIndex: number,
     weight: number
   ) => void;
 };
 
+const zodSchema = z.object({
+  note: z.string().min(1, {
+    message: "O campo de anotação não pode ser vazio.",
+  }),
+});
+
 export function ExerciseCard_2({
   title,
   reps,
   weight,
   execution,
-  number,
-  handleSaveLoad,
+  exerciseIndex,
+  handleSaveWeight,
 }: ExerciseCard_2Props) {
   const [setsDone, setSetsDone] = useState(0);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [formIsOpen, setFormIsOpen] = useState(false);
+  const [notes, setNotes] = useState("");
+
+  const form = useForm<z.infer<typeof zodSchema>>({
+    resolver: zodResolver(zodSchema),
+    defaultValues: {
+      note: "",
+    },
+  });
 
   const connector = !execution ? "" : connectors[execution];
+
+  const workoutPlanIndex = Number(usePathname().slice(1));
 
   const handleCheck = (set: number) => {
     if (set <= setsDone) {
@@ -72,6 +115,68 @@ export function ExerciseCard_2({
     setIsCollapsed(false);
   };
 
+  const onSubmit = (data: z.infer<typeof zodSchema>) => {
+    try {
+      if (data.note.trim() === "") {
+        form.setError("note", {
+          type: "minLength",
+          message: "O campo de anotação não pode ser vazio.",
+        });
+
+        form.setValue("note", "");
+        form.setFocus("note");
+        return;
+      }
+
+      const loadedWorkoutPlan =
+        localStorageManager.read<WorkoutPlan>("workoutPlan");
+
+      const payload = [...loadedWorkoutPlan!];
+
+      payload[Number(workoutPlanIndex)].exercises[exerciseIndex].notes =
+        data.note;
+
+      localStorageManager.update("workoutPlan", payload);
+
+      setFormIsOpen(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const onOpenForm = () => {
+    const loadedWorkoutPlan =
+      localStorageManager.read<WorkoutPlan>("workoutPlan");
+
+    const savedNotes =
+      loadedWorkoutPlan![Number(workoutPlanIndex)].exercises[exerciseIndex]
+        .notes;
+
+    setNotes(savedNotes ?? "");
+
+    form.setValue("note", savedNotes ?? "");
+
+    setFormIsOpen(true);
+  };
+
+  const handleDeleteNotes = () => {
+    setFormIsOpen(false);
+
+    setTimeout(() => {
+      const loadedWorkoutPlan =
+        localStorageManager.read<WorkoutPlan>("workoutPlan");
+
+      const payload = [...loadedWorkoutPlan!];
+
+      payload[Number(workoutPlanIndex)].exercises[exerciseIndex].notes = null;
+
+      localStorageManager.update("workoutPlan", payload);
+
+      setNotes("");
+      form.setValue("note", "");
+    }, 300);
+  };
+
   return (
     <div
       className={clsx(
@@ -83,7 +188,14 @@ export function ExerciseCard_2({
     >
       <div className="flex items-start gap-4">
         <button onClick={handleToggleCollapse} className="flex flex-1 gap-4">
-          <div className="p-1">
+          <div
+            className={clsx(
+              "p-1 text-zinc-800 rounded-sm cursor-pointer",
+              reps.length === setsDone
+                ? "hover:bg-green-100"
+                : "hover:bg-green-50"
+            )}
+          >
             {isCollapsed ? (
               <IconChevronDown size={16} />
             ) : (
@@ -99,13 +211,75 @@ export function ExerciseCard_2({
         {/* <Tag tag="Pirâmide" /> */}
 
         {reps.length === setsDone ? (
-          <button className="p-1" onClick={handleReset}>
+          <button
+            className="p-1 text-zinc-800 rounded-sm hover:bg-green-100 cursor-pointer"
+            onClick={handleReset}
+          >
             <IconRestore color={colors.zinc[800]} size={16} />
           </button>
         ) : (
-          <button className="p-1">
-            <IconNote color={colors.zinc[800]} size={16} />
-          </button>
+          <Dialog open={formIsOpen} onOpenChange={setFormIsOpen}>
+            <button
+              onClick={onOpenForm}
+              className="p-1 text-zinc-800 rounded-sm hover:bg-green-50 cursor-pointer"
+            >
+              <IconNote size={16} />
+            </button>
+
+            <DialogContent>
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-4"
+                >
+                  <DialogHeader>
+                    <DialogTitle>Editar anotação</DialogTitle>
+                    <DialogDescription>
+                      Adicione ou edite a anotação do exercício.
+                    </DialogDescription>
+                  </DialogHeader>
+
+                  {notes && (
+                    <div className="flex gap-4 p-4 rounded-lg bg-white">
+                      <p className="font-semibold flex-1">{notes}</p>
+
+                      <button
+                        onClick={handleDeleteNotes}
+                        className="p-1 rounded-sm text-red-600 hover:text-red-400 cursor-pointer bg-white hover:bg-red-50"
+                      >
+                        <IconTrash size={16} />
+                      </button>
+                    </div>
+                  )}
+
+                  <div className="grid gap-4">
+                    <FormField
+                      control={form.control}
+                      name="note"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <ShadcnInput
+                              placeholder="Digite sua anotação aqui"
+                              className="w-full"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button variant="outline">Cancelar</Button>
+                    </DialogClose>
+                    <Button type="submit">Salvar</Button>
+                  </DialogFooter>
+                </form>
+              </Form>
+            </DialogContent>
+          </Dialog>
         )}
       </div>
 
@@ -158,13 +332,17 @@ export function ExerciseCard_2({
 
           {/* WEIGHT */}
           <Column icon={IconWeight}>
-            {reps.map((_, index) => (
+            {reps.map((_, setIndex) => (
               <Input
-                key={`weight${index}`}
+                key={`weight${setIndex}`}
                 type="number"
-                defaultValue={weight[index] ? weight[index] : ""}
+                defaultValue={weight[setIndex] ? weight[setIndex] : ""}
                 onChange={(e) =>
-                  handleSaveLoad(number, index, Number(e.target.value))
+                  handleSaveWeight(
+                    exerciseIndex,
+                    setIndex,
+                    Number(e.target.value)
+                  )
                 }
               />
             ))}
