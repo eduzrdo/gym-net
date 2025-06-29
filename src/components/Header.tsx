@@ -21,7 +21,7 @@ export function Header({ title, onClickHeaderIcon }: HeaderProps) {
 
       <button
         onClick={onClickHeaderIcon}
-        className="bg-white w-8 h-8 flex justify-center items-center rounded-full active:bg-zinc-100"
+        className="bg-white w-8 h-8 flex justify-center items-center rounded-full active:bg-zinc-100 active:brightness-100 cursor-pointer hover:brightness-110"
       >
         <IconListLetters color={colors.green[600]} size={24} />
       </button>
