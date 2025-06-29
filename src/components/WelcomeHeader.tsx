@@ -1,18 +1,17 @@
 import { IconFileExport } from "@tabler/icons-react";
 
 import { IconButton } from "@/src/components/IconButton";
-import { WorkoutPlan } from "@/src/data/workoutPlan";
 
-import localStorageManager from "@/src/services/localStorage";
+import { useWorkoutPlan } from "@/src/hooks/useWorkoutPlan";
 
 export const WelcomeHeader = () => {
+  const { workoutPlan } = useWorkoutPlan();
+
+  console.log("WelcomeHeader");
   function handleExportWorkoutPlan() {
     try {
-      const workoutPlanData =
-        localStorageManager.read<WorkoutPlan>("workoutPlan");
-
-      if (workoutPlanData) {
-        const blob = new Blob([JSON.stringify(workoutPlanData)], {
+      if (workoutPlan) {
+        const blob = new Blob([JSON.stringify(workoutPlan)], {
           type: "application/json",
         });
 
