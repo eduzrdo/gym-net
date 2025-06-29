@@ -6,6 +6,7 @@ import { Button } from "@/src/components/ui/button";
 import { WelcomeHeader, WorkoutCard } from "@/src/components";
 
 import { useWorkoutPlan } from "@/src/hooks/useWorkoutPlan";
+import { IconBarbell } from "@tabler/icons-react";
 
 export default function Home() {
   const [
@@ -27,8 +28,8 @@ export default function Home() {
 
   if (!workoutPlan) {
     return (
-      <div className="h-[100dvh] flex justify-center items-center p-5">
-        <p className="text-lg font-semibold">Carregando plano de treino...</p>
+      <div className="h-[100dvh] flex flex-1 flex-col justify-center items-center p-5">
+        <IconBarbell size={48} className="animate-bounce text-primary" />
       </div>
     );
   }

@@ -11,7 +11,7 @@ import { TimerController, StartWorkoutButton } from "./_components";
 import { useWorkoutPlan } from "@/src/hooks/useWorkoutPlan";
 
 export default function WorkoutPage() {
-  const [showWorkoutList, setshowWorkoutList] = useState(false);
+  const [showWorkoutList, setShowWorkoutList] = useState(false);
   const [workoutHasStarted, setWorkoutHasStarted] = useState(false);
 
   const { workoutPlan } = useWorkoutPlan();
@@ -22,11 +22,11 @@ export default function WorkoutPage() {
   const router = useRouter();
 
   const handleShowWorkoutList = () => {
-    setshowWorkoutList(true);
+    setShowWorkoutList(true);
   };
 
   const handleHideWorkoutList = () => {
-    setshowWorkoutList(false);
+    setShowWorkoutList(false);
   };
 
   const handleSelectWorkout = (index: number) => {
@@ -41,8 +41,6 @@ export default function WorkoutPage() {
   const handleStopWorkout = () => {
     setWorkoutHasStarted(false);
   };
-
-  console.log("WORKOUT PAGE");
 
   if (!workoutPlan) {
     return (
