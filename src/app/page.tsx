@@ -1,13 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Button } from "@/src/components/ui/button";
+import { useState } from "react";
 
+import { Button } from "@/src/components/ui/button";
 import { WelcomeHeader, WorkoutCard } from "@/src/components";
 
-import { WorkoutPlan, workoutPlan } from "@/src/data/workoutPlan";
-
-import localStorageManager from "@/src/services/localStorage";
+import { useWorkoutPlan } from "@/src/hooks/useWorkoutPlan";
 
 export default function Home() {
   const [
@@ -15,13 +13,11 @@ export default function Home() {
     setShowConfirmUpdateWorkoutPlanButton,
   ] = useState(false);
 
-  const [loadedWorkoutPlan, setLoadedWorkoutPlan] =
-    useState<WorkoutPlan | null>(null);
+  const { workoutPlan, reloadWorkoutPlan } = useWorkoutPlan();
 
   const handleUpdateWorkoutPlan = () => {
     if (showConfirmUpdateWorkoutPlanButton) {
-      localStorageManager.update("workoutPlan", workoutPlan);
-      setLoadedWorkoutPlan(workoutPlan);
+      reloadWorkoutPlan();
       setShowConfirmUpdateWorkoutPlanButton(false);
       return;
     }
@@ -29,19 +25,7 @@ export default function Home() {
     setShowConfirmUpdateWorkoutPlanButton(true);
   };
 
-  useEffect(() => {
-    const workoutPlanData =
-      localStorageManager.read<WorkoutPlan>("workoutPlan");
-
-    if (workoutPlanData) {
-      setLoadedWorkoutPlan(workoutPlanData);
-    } else {
-      localStorageManager.create("workoutPlan", workoutPlan);
-      setLoadedWorkoutPlan(workoutPlan);
-    }
-  }, []);
-
-  if (!loadedWorkoutPlan) {
+  if (!workoutPlan) {
     return (
       <div className="h-[100dvh] flex justify-center items-center p-5">
         <p className="text-lg font-semibold">Carregando plano de treino...</p>
@@ -54,7 +38,7 @@ export default function Home() {
       <WelcomeHeader />
 
       <div className="flex flex-col gap-4 p-5 flex-1">
-        {loadedWorkoutPlan.map((workout, index) => (
+        {workoutPlan.map((workout, index) => (
           <WorkoutCard key={workout.id} workout={workout} number={index} />
         ))}
       </div>
@@ -66,14 +50,14 @@ export default function Home() {
             variant="destructive"
             className="w-full"
           >
-            Sim, atualizar agora
+            Sim, recarregar agora
           </Button>
         ) : (
           <Button
             onClick={() => setShowConfirmUpdateWorkoutPlanButton(true)}
             className="w-full"
           >
-            Atualizar plano de treino
+            Recarregar plano de treino
           </Button>
         )}
       </div>

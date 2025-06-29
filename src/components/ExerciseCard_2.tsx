@@ -47,14 +47,11 @@ import { Exercise, WorkoutPlan } from "@/src/data/workoutPlan";
 import { connectors } from "src/utils/exercise";
 
 import localStorageManager from "@/src/services/localStorage";
+import { useWorkoutPlan } from "@/src/hooks/useWorkoutPlan";
 
 type ExerciseCard_2Props = Exercise & {
   exerciseIndex: number;
-  handleSaveWeight: (
-    exerciseIndex: number,
-    weightIndex: number,
-    weight: number
-  ) => void;
+  workoutId: number;
 };
 
 const zodSchema = z.object({
@@ -69,12 +66,15 @@ export function ExerciseCard_2({
   weight,
   execution,
   exerciseIndex,
-  handleSaveWeight,
-}: ExerciseCard_2Props) {
+  workoutId,
+}: // handleSaveWeight,
+ExerciseCard_2Props) {
   const [setsDone, setSetsDone] = useState(0);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [formIsOpen, setFormIsOpen] = useState(false);
   const [notes, setNotes] = useState("");
+
+  const { saveWeight } = useWorkoutPlan();
 
   const form = useForm<z.infer<typeof zodSchema>>({
     resolver: zodResolver(zodSchema),
@@ -338,13 +338,14 @@ export function ExerciseCard_2({
                 key={`weight${setIndex}`}
                 type="number"
                 defaultValue={weight[setIndex] ? weight[setIndex] : ""}
-                onChange={(e) =>
-                  handleSaveWeight(
+                onChange={(e) => {
+                  saveWeight(
+                    workoutId,
                     exerciseIndex,
                     setIndex,
                     Number(e.target.value)
-                  )
-                }
+                  );
+                }}
               />
             ))}
           </Column>

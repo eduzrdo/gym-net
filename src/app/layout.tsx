@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
 import "./globals.css";
 
+import { WorkoutPlanContextProvider } from "@/src/hooks/useWorkoutPlan";
+
 const archivo = Archivo({
   variable: "--font-archivo",
   subsets: ["latin"],
@@ -20,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${archivo.className} antialiased`}>
-        <div className="lg:max-w-sm mx-auto flex h-[100dvh]">{children}</div>
+        <WorkoutPlanContextProvider>
+          <div className="lg:max-w-sm mx-auto flex h-[100dvh]">{children}</div>
+        </WorkoutPlanContextProvider>
       </body>
     </html>
   );

@@ -1,22 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { IconBarbell, IconX } from "@tabler/icons-react";
 import colors from "tailwindcss/colors";
 
 import { Header, ExerciseCard_2 } from "@/src/components";
-import { WorkoutPlan } from "@/src/data/workoutPlan";
-
-import localStorageManager from "@/src/services/localStorage";
 import { TimerController, StartWorkoutButton } from "./_components";
+
+import { useWorkoutPlan } from "@/src/hooks/useWorkoutPlan";
 
 export default function WorkoutPage() {
   const [showWorkoutList, setshowWorkoutList] = useState(false);
   const [workoutHasStarted, setWorkoutHasStarted] = useState(false);
 
-  const [loadedWorkoutPlan, setLoadedWorkoutPlan] =
-    useState<WorkoutPlan | null>(null);
+  const { workoutPlan } = useWorkoutPlan();
 
   const params = useParams<{ workoutId: string }>();
   const { workoutId } = params;
@@ -36,21 +34,6 @@ export default function WorkoutPage() {
     handleHideWorkoutList();
   };
 
-  const handleSaveWeight = (
-    exerciseIndex: number,
-    weightIndex: number,
-    weight: number
-  ) => {
-    const payload = [...loadedWorkoutPlan!];
-
-    payload[Number(workoutId)].exercises[exerciseIndex].weight[weightIndex] =
-      weight;
-
-    localStorageManager.update("workoutPlan", payload);
-
-    setLoadedWorkoutPlan(payload);
-  };
-
   const handleStartWorkout = () => {
     setWorkoutHasStarted(true);
   };
@@ -59,32 +42,9 @@ export default function WorkoutPage() {
     setWorkoutHasStarted(false);
   };
 
-  useEffect(() => {
-    const workoutPlan = localStorageManager.read<WorkoutPlan>("workoutPlan");
-
-    if (workoutPlan) {
-      setLoadedWorkoutPlan(workoutPlan);
-
-      // TODO: DELETE ALL NOTES
-
-      // const payload = [...workoutPlan];
-
-      // workoutPlan?.forEach((w, i) => {
-      //   const exercises = payload[i].exercises.map((e) => ({
-      //     ...e,
-      //     notes: undefined,
-      //   }));
-
-      //   payload[i].exercises = exercises;
-      // });
-
-      // localStorageManager.update("workoutPlan", payload);
-    }
-  }, []);
-
   console.log("WORKOUT PAGE");
 
-  if (!loadedWorkoutPlan) {
+  if (!workoutPlan) {
     return (
       <div className="flex justify-center items-center p-5">
         <p className="text-lg font-semibold">Carregando treino...</p>
@@ -95,22 +55,19 @@ export default function WorkoutPage() {
   return (
     <div className="relative flex flex-1 flex-col">
       <Header
-        title={loadedWorkoutPlan[Number(workoutId)].title}
+        title={workoutPlan[Number(workoutId)].title}
         onClickHeaderIcon={handleShowWorkoutList}
       />
 
       <div className="flex flex-1 flex-col p-5 gap-5 overflow-auto">
-        {loadedWorkoutPlan[Number(workoutId)].exercises.map(
-          (exercise, index) => (
-            // <ExerciseCard key={exercise.id} {...exercise} />
-            <ExerciseCard_2
-              key={exercise.id}
-              {...exercise}
-              handleSaveWeight={handleSaveWeight}
-              exerciseIndex={index}
-            />
-          )
-        )}
+        {workoutPlan[Number(workoutId)].exercises.map((exercise, index) => (
+          <ExerciseCard_2
+            key={exercise.id}
+            {...exercise}
+            workoutId={Number(workoutId)}
+            exerciseIndex={index}
+          />
+        ))}
       </div>
 
       {/* Timer */}
@@ -143,7 +100,7 @@ export default function WorkoutPage() {
                   <IconX color={colors.zinc[500]} size={24} />
                 </button>
               </li>
-              {loadedWorkoutPlan.map((workoutPlanItem, index) => (
+              {workoutPlan.map((workoutPlanItem, index) => (
                 <li key={workoutPlanItem.title}>
                   <button
                     onClick={() => handleSelectWorkout(index)}
