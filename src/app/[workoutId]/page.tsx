@@ -9,9 +9,11 @@ import { Header, ExerciseCard_2 } from "@/src/components";
 import { WorkoutPlan } from "@/src/data/workoutPlan";
 
 import localStorageManager from "@/src/services/localStorage";
+import { TimerController, StartWorkoutButton } from "./_components";
 
 export default function WorkoutPage() {
   const [showWorkoutList, setshowWorkoutList] = useState(false);
+  const [workoutHasStarted, setWorkoutHasStarted] = useState(false);
 
   const [loadedWorkoutPlan, setLoadedWorkoutPlan] =
     useState<WorkoutPlan | null>(null);
@@ -49,6 +51,14 @@ export default function WorkoutPage() {
     setLoadedWorkoutPlan(payload);
   };
 
+  const handleStartWorkout = () => {
+    setWorkoutHasStarted(true);
+  };
+
+  const handleStopWorkout = () => {
+    setWorkoutHasStarted(false);
+  };
+
   useEffect(() => {
     const workoutPlan = localStorageManager.read<WorkoutPlan>("workoutPlan");
 
@@ -72,9 +82,11 @@ export default function WorkoutPage() {
     }
   }, []);
 
+  console.log("WORKOUT PAGE");
+
   if (!loadedWorkoutPlan) {
     return (
-      <div className="h-[100dvh] flex justify-center items-center p-5">
+      <div className="flex justify-center items-center p-5">
         <p className="text-lg font-semibold">Carregando treino...</p>
       </div>
     );
@@ -100,6 +112,13 @@ export default function WorkoutPage() {
           )
         )}
       </div>
+
+      {/* Timer */}
+      {workoutHasStarted ? (
+        <TimerController callback={handleStopWorkout} />
+      ) : (
+        <StartWorkoutButton callback={handleStartWorkout} />
+      )}
 
       {/* TODO: */}
       {/* TOTAL PROGRESS BAR */}
