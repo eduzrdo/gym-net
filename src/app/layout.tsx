@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${archivo.className} antialiased`}>
         <WorkoutPlanContextProvider>
-          <div className="lg:max-w-sm mx-auto flex h-[100dvh]">{children}</div>
+          <div className="md:max-w-md mx-auto flex h-[100dvh]">{children}</div>
         </WorkoutPlanContextProvider>
       </body>
     </html>

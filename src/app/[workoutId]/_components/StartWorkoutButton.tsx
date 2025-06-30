@@ -15,7 +15,7 @@ export function StartWorkoutButton({ callback }: StartWorkoutButtonProps) {
   };
 
   return (
-    <div className="flex items-center gap-5 py-3 px-5 bg-white border-t-1 border-zinc-200">
+    <div className="py-3 px-5 bg-white border-t-1 border-zinc-200">
       <Button onClick={handleClick} className="w-full">
         Começar treino
       </Button>

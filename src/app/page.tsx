@@ -44,7 +44,7 @@ export default function Home() {
         ))}
       </div>
 
-      <div className="p-5">
+      <div className="py-3 px-5">
         {showConfirmUpdateWorkoutPlanButton ? (
           <Button
             onClick={handleUpdateWorkoutPlan}
