@@ -226,7 +226,7 @@ ExerciseCard_2Props) {
               <IconNote size={16} />
             </button>
 
-            <DialogContent>
+            <DialogContent className="top-[60px] translate-y-[0]">
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
@@ -240,8 +240,10 @@ ExerciseCard_2Props) {
                   </DialogHeader>
 
                   {notes && (
-                    <div className="flex gap-4 p-4 rounded-lg bg-white">
-                      <p className="font-semibold flex-1">{notes}</p>
+                    <div className="flex gap-2 px-4 py-2 rounded-lg bg-white">
+                      <p className="font-semibold flex-1 max-h-[96px] overflow-y-auto pr-2">
+                        {notes}
+                      </p>
 
                       <button
                         onClick={handleDeleteNotes}
@@ -272,10 +274,12 @@ ExerciseCard_2Props) {
                     />
                   </div>
                   <DialogFooter>
-                    <DialogClose asChild>
-                      <Button variant="outline">Cancelar</Button>
-                    </DialogClose>
-                    <Button type="submit">Salvar</Button>
+                    <div className="flex flex-row gap-2 justify-end">
+                      <DialogClose asChild>
+                        <Button variant="outline">Cancelar</Button>
+                      </DialogClose>
+                      <Button type="submit">Salvar</Button>
+                    </div>
                   </DialogFooter>
                 </form>
               </Form>

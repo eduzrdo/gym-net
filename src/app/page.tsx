@@ -38,7 +38,7 @@ export default function Home() {
     <div className="flex flex-col flex-1">
       <WelcomeHeader />
 
-      <div className="flex flex-col gap-4 p-5 flex-1">
+      <div className="flex flex-col gap-4 p-5 flex-1 hide-scrollbar">
         {workoutPlan.map((workout, index) => (
           <WorkoutCard key={workout.id} workout={workout} number={index} />
         ))}

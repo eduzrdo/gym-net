@@ -57,7 +57,7 @@ export default function WorkoutPage() {
         onClickHeaderIcon={handleShowWorkoutList}
       />
 
-      <div className="flex flex-1 flex-col p-5 gap-5 overflow-auto">
+      <div className="flex flex-1 flex-col p-5 gap-5 overflow-auto hide-scrollbar">
         {workoutPlan[Number(workoutId)].exercises.map((exercise, index) => (
           <ExerciseCard_2
             key={exercise.id}
