@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { IconBarbell, IconX } from "@tabler/icons-react";
 import colors from "tailwindcss/colors";
 
-import { Header, ExerciseCard_2 } from "@/src/components";
+import { Header, ExerciseCard } from "@/src/components";
 import { TimerController, StartWorkoutButton } from "./_components";
 
 import { useWorkoutPlan } from "@/src/hooks/useWorkoutPlan";
@@ -59,7 +59,7 @@ export default function WorkoutPage() {
 
       <div className="flex flex-1 flex-col p-5 gap-5 overflow-auto hide-scrollbar">
         {workoutPlan[Number(workoutId)].exercises.map((exercise, index) => (
-          <ExerciseCard_2
+          <ExerciseCard
             key={exercise.id}
             {...exercise}
             workoutId={Number(workoutId)}
