@@ -1,15 +1,4 @@
-export type Exercise = {
-  id: string;
-  title: string;
-  reps: number[][];
-  weight: number[];
-  execution?: "dropset" | "range" | "conjugate";
-  notes?: string | null;
-};
-
-export type Workout = { id: string; title: string; exercises: Exercise[] };
-
-export type WorkoutPlan = Workout[];
+import { WorkoutPlan } from "@/src/hooks/useWorkoutPlan";
 
 export const workoutPlan: WorkoutPlan = [
   {

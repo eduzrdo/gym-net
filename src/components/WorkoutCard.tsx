@@ -1,7 +1,7 @@
 import { IconBarbell, IconTallymarks } from "@tabler/icons-react";
 import colors from "tailwindcss/colors";
 
-import { Workout } from "@/src/data/workoutPlan";
+import { Workout } from "@/src/hooks/useWorkoutPlan";
 import Link from "next/link";
 
 type WorkoutCardProps = {

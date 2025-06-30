@@ -43,7 +43,7 @@ import colors from "tailwindcss/colors";
 
 // import { Tag } from "@/src/components/Tag";
 
-import { Exercise, WorkoutPlan } from "@/src/data/workoutPlan";
+import { Exercise, WorkoutPlan } from "@/src/hooks/useWorkoutPlan";
 import { connectors } from "src/utils/exercise";
 
 import localStorageManager from "@/src/services/localStorage";

@@ -33,7 +33,7 @@ export type Exercise = {
   title: string;
   reps: number[][];
   weight: number[];
-  execution?: "dropset" | "range";
+  execution?: "dropset" | "range" | "conjugate";
   notes?: string | null;
 };
 
