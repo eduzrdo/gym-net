@@ -25,14 +25,6 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/src/components/ui/dialog";
-
-import clsx from "clsx";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import colors from "tailwindcss/colors";
-
-import { Input as ShadcnInput } from "@/src/components/ui/input";
 import {
   Form,
   FormField,
@@ -41,6 +33,14 @@ import {
   FormMessage,
 } from "@/src/components/ui/form";
 import { Button } from "@/src/components/ui/button";
+import { Input as ShadcnInput } from "@/src/components/ui/input";
+
+import clsx from "clsx";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import colors from "tailwindcss/colors";
+
 // import { Tag } from "@/src/components/Tag";
 
 import { Exercise, WorkoutPlan } from "@/src/data/workoutPlan";
