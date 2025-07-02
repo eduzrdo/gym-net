@@ -15,9 +15,8 @@ export function Header({ title, onClickHeaderIcon }: HeaderProps) {
       <button onClick={router.back} className="cursor-pointer">
         <IconArrowLeft color={colors.white} />
       </button>
-      <p className="flex-1 text-white text-xl font-bold overflow-ellipsis truncate">
-        {title}
-      </p>
+
+      <p className="flex-1 text-white text-xl font-bold truncate">{title}</p>
 
       <button
         onClick={onClickHeaderIcon}

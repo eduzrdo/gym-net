@@ -5,9 +5,5 @@ export default function WorkoutLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <div className="flex flex-1">
-      <TimerContextProvider>{children}</TimerContextProvider>
-    </div>
-  );
+  return <TimerContextProvider>{children}</TimerContextProvider>;
 }
