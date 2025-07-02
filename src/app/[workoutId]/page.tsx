@@ -51,7 +51,7 @@ export default function WorkoutPage() {
   }
 
   return (
-    <div className="relative flex flex-1 flex-col">
+    <div className="relative flex flex-col h-full">
       <Header
         title={workoutPlan[Number(workoutId)].title}
         onClickHeaderIcon={handleShowWorkoutList}
