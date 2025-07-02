@@ -145,6 +145,7 @@ ExerciseCardProps) {
   const handleDeleteNotes = () => {
     setTimeout(() => {
       deleteNotes(workoutPlanIndex, exerciseIndex);
+      form.clearErrors("note");
     }, 300);
 
     form.setValue("note", "");
@@ -195,11 +196,13 @@ ExerciseCardProps) {
           <Dialog open={formIsOpen} onOpenChange={setFormIsOpen}>
             <button
               onClick={onOpenForm}
-              className="p-1 text-zinc-800 rounded-sm hover:bg-green-50 cursor-pointer"
+              className="p-1 text-zinc-800 rounded-sm hover:bg-green-50 cursor-pointer relative"
             >
               <IconNote size={16} />
 
-              {}
+              {notes && (
+                <div className="w-1.5 h-1.5 rounded-full bg-primary absolute top-0 right-0" />
+              )}
             </button>
 
             <DialogContent className="top-[60px] translate-y-[0]">
