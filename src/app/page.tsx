@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { Button } from "@/src/components/ui/button";
-import { WelcomeHeader, WorkoutCard } from "@/src/components";
+import { WelcomeHeader, WorkoutCard, InstallPWA } from "@/src/components";
 
 import { useWorkoutPlan } from "@/src/hooks/useWorkoutPlan";
 import { IconBarbell } from "@tabler/icons-react";
@@ -44,7 +44,9 @@ export default function Home() {
         ))}
       </div>
 
-      <div className="py-3 px-5">
+      <div className="flex flex-col py-3 px-5 gap-5">
+        <InstallPWA />
+
         {showConfirmUpdateWorkoutPlanButton ? (
           <Button
             onClick={handleUpdateWorkoutPlan}

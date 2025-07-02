@@ -7,7 +7,6 @@ import { useWorkoutPlan } from "@/src/hooks/useWorkoutPlan";
 export const WelcomeHeader = () => {
   const { workoutPlan } = useWorkoutPlan();
 
-  console.log("WelcomeHeader");
   function handleExportWorkoutPlan() {
     try {
       if (workoutPlan) {
