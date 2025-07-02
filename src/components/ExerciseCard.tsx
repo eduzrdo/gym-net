@@ -43,10 +43,9 @@ import colors from "tailwindcss/colors";
 
 // import { Tag } from "@/src/components/Tag";
 
-import { Exercise, WorkoutPlan } from "@/src/hooks/useWorkoutPlan";
+import { Exercise } from "@/src/hooks/useWorkoutPlan";
 import { connectors } from "src/utils/exercise";
 
-import localStorageManager from "@/src/services/localStorage";
 import { useWorkoutPlan } from "@/src/hooks/useWorkoutPlan";
 
 type ExerciseCardProps = Exercise & {
@@ -67,14 +66,16 @@ export function ExerciseCard({
   execution,
   exerciseIndex,
   workoutId,
+  notes,
 }: // handleSaveWeight,
 ExerciseCardProps) {
   const [setsDone, setSetsDone] = useState(0);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [formIsOpen, setFormIsOpen] = useState(false);
-  const [notes, setNotes] = useState("");
 
-  const { saveWeight } = useWorkoutPlan();
+  const { saveWeight, saveNotes, deleteNotes } = useWorkoutPlan();
+
+  const workoutPlanIndex = Number(usePathname().slice(1));
 
   const form = useForm<z.infer<typeof zodSchema>>({
     resolver: zodResolver(zodSchema),
@@ -84,8 +85,6 @@ ExerciseCardProps) {
   });
 
   const connector = !execution ? "" : connectors[execution];
-
-  const workoutPlanIndex = Number(usePathname().slice(1));
 
   const handleCheck = (set: number) => {
     if (set <= setsDone) {
@@ -128,15 +127,9 @@ ExerciseCardProps) {
         return;
       }
 
-      const loadedWorkoutPlan =
-        localStorageManager.read<WorkoutPlan>("workoutPlan");
-
-      const payload = [...loadedWorkoutPlan!];
-
-      payload[Number(workoutPlanIndex)].exercises[exerciseIndex].notes =
-        data.note;
-
-      localStorageManager.update("workoutPlan", payload);
+      setTimeout(() => {
+        saveNotes(workoutPlanIndex, exerciseIndex, data.note);
+      }, 300);
 
       setFormIsOpen(false);
     } catch (error) {
@@ -145,36 +138,17 @@ ExerciseCardProps) {
   };
 
   const onOpenForm = () => {
-    const loadedWorkoutPlan =
-      localStorageManager.read<WorkoutPlan>("workoutPlan");
-
-    const savedNotes =
-      loadedWorkoutPlan![Number(workoutPlanIndex)].exercises[exerciseIndex]
-        .notes;
-
-    setNotes(savedNotes ?? "");
-
-    form.setValue("note", savedNotes ?? "");
-
+    form.setValue("note", notes ?? "");
     setFormIsOpen(true);
   };
 
   const handleDeleteNotes = () => {
-    setFormIsOpen(false);
-
     setTimeout(() => {
-      const loadedWorkoutPlan =
-        localStorageManager.read<WorkoutPlan>("workoutPlan");
-
-      const payload = [...loadedWorkoutPlan!];
-
-      payload[Number(workoutPlanIndex)].exercises[exerciseIndex].notes = null;
-
-      localStorageManager.update("workoutPlan", payload);
-
-      setNotes("");
-      form.setValue("note", "");
+      deleteNotes(workoutPlanIndex, exerciseIndex);
     }, 300);
+
+    form.setValue("note", "");
+    setFormIsOpen(false);
   };
 
   return (
@@ -224,6 +198,8 @@ ExerciseCardProps) {
               className="p-1 text-zinc-800 rounded-sm hover:bg-green-50 cursor-pointer"
             >
               <IconNote size={16} />
+
+              {}
             </button>
 
             <DialogContent className="top-[60px] translate-y-[0]">

@@ -62,8 +62,6 @@ export const TimerContextProvider = ({
     };
   }, [isRunning]);
 
-  console.log("\n\n totalSeconds\n\n", JSON.stringify(totalSeconds, null, 2));
-
   return (
     <TimerContext.Provider
       value={{
