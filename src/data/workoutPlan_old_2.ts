@@ -2,93 +2,11 @@ import { WorkoutPlan } from "@/src/hooks/useWorkoutPlan";
 
 export const workoutPlan: WorkoutPlan = [
   {
-    id: "1",
-    title: "Peito, tríceps e ombro",
+    id: "7c3bfe76-2b6e-4370-a2f9-3738f1f1cc88",
+    title: "Dorsal, bíceps e ombro (posterior)",
     exercises: [
       {
-        id: "11",
-        title: "supino inclinado com halteres",
-        reps: [
-          [6, 8],
-          [6, 8],
-          [6, 8],
-        ],
-        execution: "range",
-        weight: [22, 24, 24],
-        notes: null,
-      },
-      {
-        id: "12",
-        title: "Crucifixo máquina",
-        reps: [
-          [6, 8],
-          [6, 8],
-          [6, 8],
-        ],
-        execution: "range",
-        weight: [86, 93, 93],
-        notes: "Sportfit: 60/65/70",
-      },
-      {
-        id: "13",
-        title: "Crossover polia alta (declinado)",
-        reps: [
-          [6, 8],
-          [6, 8],
-          [6, 8],
-        ],
-        execution: "range",
-        weight: [17, 17, 17],
-        notes: "Sportfit: 15-15",
-      },
-      {
-        id: "14",
-        title: "Elevação lateral com halter",
-        reps: [
-          [8, 10],
-          [8, 10],
-          [8, 10],
-        ],
-        execution: "range",
-        weight: [],
-      },
-      {
-        id: "15",
-        title: "Tríceps francês na polia",
-        reps: [
-          [8, 10],
-          [8, 10],
-          [8, 10],
-        ],
-        execution: "range",
-        weight: [22, 22, 22],
-        notes: "Sportfit: corda - 15",
-      },
-      {
-        id: "16",
-        title: "Tríceps pulley corda",
-        reps: [
-          [8, 10],
-          [8, 10],
-          [8, 10],
-        ],
-        execution: "range",
-        weight: [],
-      },
-      {
-        id: "17",
-        title: "Abdominal declinado",
-        reps: [[20], [20], [20], [20]],
-        weight: [15, 15, 15, 15],
-      },
-    ],
-  },
-  {
-    id: "2",
-    title: "Dorsal, bíceps",
-    exercises: [
-      {
-        id: "21",
+        id: "9b2f08fa-3f27-4cdd-9f36-2d7d1bff4fd3",
         title: "Puxada alta aberta",
         reps: [
           [6, 8],
@@ -99,7 +17,7 @@ export const workoutPlan: WorkoutPlan = [
         weight: [61.3, 61.3, 63.6],
       },
       {
-        id: "22",
+        id: "e2e9c3bb-424f-4d70-90cc-5e99edb54b34",
         title: "Remada baixa (triângulo)",
         reps: [
           [8, 10],
@@ -110,7 +28,7 @@ export const workoutPlan: WorkoutPlan = [
         weight: [60, 60, 60],
       },
       {
-        id: "23",
+        id: "e2e9c3bb-424f-4fa0-90cc-5e99edb54b34",
         title: "Remada declinada (barra)",
         reps: [
           [8, 10],
@@ -121,7 +39,7 @@ export const workoutPlan: WorkoutPlan = [
         weight: [50, 50, 50],
       },
       {
-        id: "24",
+        id: "1a7f0eb2-7e3d-44de-9fe3-2ecbbdbf4472",
         title: "Rosca Bayesian",
         reps: [
           [8, 10],
@@ -132,7 +50,7 @@ export const workoutPlan: WorkoutPlan = [
         weight: [12.5, 10, 10],
       },
       {
-        id: "25",
+        id: "9e4d50c3-03b3-4d1d-9b91-2fdb4cb2269c",
         title: "Rosca direta com giro (halteres)",
         reps: [
           [8, 10],
@@ -143,7 +61,7 @@ export const workoutPlan: WorkoutPlan = [
         weight: [14, 16, 16],
       },
       {
-        id: "26",
+        id: "0f4a8c3f-6217-4f41-a42b-d8cce25e6ef9",
         title: "Rosca scott na polia",
         reps: [
           [8, 10],
@@ -155,7 +73,7 @@ export const workoutPlan: WorkoutPlan = [
         notes: "Testar bíceps Hulk unilateral na polia",
       },
       {
-        id: "27",
+        id: "4fbb80b3-d487-4a5c-944e-f013556d31d9",
         title: "Desenvolvimento com halter",
         reps: [
           [6, 10],
@@ -166,7 +84,7 @@ export const workoutPlan: WorkoutPlan = [
         weight: [14, 16, 18],
       },
       {
-        id: "28",
+        id: "194e0a2f-1427-40c0-85db-0e64fd40dc16",
         title: "Abdominal infra",
         reps: [[20], [20], [20], [20]],
         weight: [0, 0, 0],
@@ -174,68 +92,7 @@ export const workoutPlan: WorkoutPlan = [
     ],
   },
   {
-    id: "3",
-    title: "Ombros e trapézio",
-    exercises: [
-      {
-        id: "9b2f08fa-3f27-4cdd-9f36-2d7d1bff4fd3",
-        title: "Desenvolvimento máquina fechado",
-        reps: [
-          [6, 10],
-          [6, 10],
-          [6, 10],
-        ],
-        execution: "range",
-        weight: [],
-      },
-      {
-        id: "e2e9c3bb-424f-4d70-90cc-5e99edb54b34",
-        title: "Desenvolvimento unilateral halter",
-        reps: [
-          [6, 10],
-          [6, 10],
-          [6, 10],
-        ],
-        execution: "range",
-        weight: [],
-      },
-      {
-        id: "e2e9c3bb-424f-4fa0-90cc-5e99edb54b34",
-        title: "Elevação lateral halter",
-        reps: [
-          [6, 10],
-          [6, 10],
-          [6, 10],
-        ],
-        execution: "range",
-        weight: [],
-      },
-      {
-        id: "1a7f0eb2-7e3d-44de-9fe3-2ecbbdbf4472",
-        title: "Crucifixo invertido máquina / polia",
-        reps: [
-          [6, 10],
-          [6, 10],
-          [6, 10],
-        ],
-        execution: "range",
-        weight: [12.5, 10, 10],
-      },
-      {
-        id: "9e4d50c3-03b3-4d1d-9b91-2fdb4cb2269c",
-        title: "Remada nas costas no smith",
-        reps: [
-          [6, 10],
-          [6, 10],
-          [6, 10],
-        ],
-        execution: "range",
-        weight: [14, 16, 16],
-      },
-    ],
-  },
-  {
-    id: "4",
+    id: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
     title: "Membros inferiores",
     exercises: [
       {
@@ -338,6 +195,102 @@ export const workoutPlan: WorkoutPlan = [
         ],
         execution: "range",
         weight: [26, 26, 26],
+      },
+    ],
+  },
+  {
+    id: "3f5e7d1e-9d8f-4d17-8e9f-ec1d96255d47",
+    title: "Peito, tríceps e ombro (anterior e lateral)",
+    exercises: [
+      {
+        id: "550e8400-e29b-41d4-a716-446655440000",
+        title: "⁠Supino inclinado com halteres",
+        reps: [
+          [6, 8],
+          [6, 8],
+          [6, 8],
+        ],
+        execution: "range",
+        weight: [22, 24, 24],
+        notes: null,
+      },
+      {
+        id: "3e1f1c70-983d-4b95-9edc-cfd3f648d7d7",
+        title: "Crucifixo máquina",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
+        weight: [86, 93, 93],
+        notes: "Sportfit: 60/65/70",
+      },
+      {
+        id: "8433a162-9abf-4f14-8f6c-f0e21e1eb1a3",
+        title: "Crossover polia alta (declinado)",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
+        weight: [17, 17, 17],
+        notes: "Sportfit: 15-15",
+      },
+      {
+        id: "d31995ff-d2a6-490f-82f5-0c7b2e2caa33",
+        title: "Tríceps pulley barra W",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
+        weight: [26.1, 26.1, 26.1],
+        notes:
+          "Sportfit: barra W - 25, 27,5, 27,5 (cotovelo levemente dolorido) (fazer próxima com 30 no máximo) | Tentar mudar para tríceps corda",
+      },
+      {
+        id: "aaf7d152-4c80-4377-b3c6-7b4356ea0b99",
+        title: "Tríceps testa com barra W",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
+        weight: [25, 25, 25],
+        notes: "Sportfit: 25, 25, 27,5",
+      },
+      {
+        id: "6c3bc6e1-3c28-44cb-832a-b2ae7e2ff147",
+        title: "Tríceps francês",
+        reps: [
+          [8, 10],
+          [8, 10],
+          [8, 10],
+        ],
+        execution: "range",
+        weight: [22, 22, 22],
+        notes: "Sportfit: corda - 15",
+      },
+      {
+        id: "fba34b2d-d7dc-4de3-b90e-908fb4cdbdde",
+        title: "Voador invertido máquina",
+        reps: [
+          [6, 10],
+          [6, 10],
+          [6, 10],
+        ],
+        execution: "range",
+        weight: [60, 60, 60],
+      },
+      {
+        id: "72c89b79-0f92-4e5e-9872-4bb5d64d41f6",
+        title: "Abdominal declinado",
+        reps: [[20], [20], [20], [20]],
+        weight: [15, 15, 15, 15],
       },
     ],
   },
