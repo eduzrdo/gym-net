@@ -28,7 +28,7 @@ export default function RootLayout({
           <div className="max-w-lg mx-auto h-[100dvh]">{children}</div>
         </WorkoutPlanContextProvider>
 
-        <GoogleTagManager gtmId="G-0QTN88EXLZ" />
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
       </body>
     </html>
   );
