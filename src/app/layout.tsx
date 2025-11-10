@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
+import { GoogleTagManager } from '@next/third-parties/google'
+
 import "./globals.css";
 
 import { WorkoutPlanContextProvider } from "@/src/hooks/useWorkoutPlan";
@@ -25,6 +27,8 @@ export default function RootLayout({
         <WorkoutPlanContextProvider>
           <div className="max-w-lg mx-auto h-[100dvh]">{children}</div>
         </WorkoutPlanContextProvider>
+
+        <GoogleTagManager gtmId="G-0QTN88EXLZ" />
       </body>
     </html>
   );
